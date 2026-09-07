@@ -1,0 +1,23 @@
+name: 'Setup Frontend Environment'
+description: 'Sets up Node.js with dependency caching for Movie Picture Frontend'
+inputs:
+  node-version:
+    description: 'Node.js version'
+    required: false
+    default: '18.14.2'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup NodeJS
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Cache Node dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('starter/frontend/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-

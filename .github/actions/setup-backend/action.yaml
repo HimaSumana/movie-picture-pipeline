@@ -1,0 +1,23 @@
+name: 'Setup Backend Environment'
+description: 'Sets up Python 3.10 with Pipenv caching for Movie Picture Backend'
+inputs:
+  python-version:
+    description: 'Python version'
+    required: false
+    default: '3.10'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Cache Pipenv environment
+      uses: actions/cache@v4
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-pipenv-${{ hashFiles('starter/backend/Pipfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pipenv-
