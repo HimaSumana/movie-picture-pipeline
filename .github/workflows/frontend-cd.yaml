@@ -106,7 +106,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-          REACT_APP_MOVIE_API_URL: ${{ secrets.REACT_APP_MOVIE_API_URL || 'http://localhost:5000' }}
+          REACT_APP_MOVIE_API_URL: ${{ secrets.REACT_APP_MOVIE_API_URL || 'http://ac1359cd0e3f44f8c91202d0c0671d17-1078869171.us-east-1.elb.amazonaws.com' }}
         run: |
           cd starter/frontend
           docker build \

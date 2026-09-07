@@ -146,7 +146,11 @@ Overrides max line length to 88 characters and fails on any lines >88 characters
 
 Once both CD pipelines run successfully on merges to `main`:
 
-### 6.1 Check Kubernetes Resources
+### 6.1 Live Deployed Endpoints
+- **Frontend Service URL**: [http://acf3cea40adc242018c19ff7c30c8adc-829894773.us-east-1.elb.amazonaws.com](http://acf3cea40adc242018c19ff7c30c8adc-829894773.us-east-1.elb.amazonaws.com)
+- **Backend Movie API URL**: [http://ac1359cd0e3f44f8c91202d0c0671d17-1078869171.us-east-1.elb.amazonaws.com/movies](http://ac1359cd0e3f44f8c91202d0c0671d17-1078869171.us-east-1.elb.amazonaws.com/movies)
+
+### 6.2 Check Kubernetes Resources
 ```bash
 aws eks update-kubeconfig --name cluster --region us-east-1
 
@@ -157,7 +161,7 @@ kubectl get pods -o wide
 kubectl get svc
 ```
 
-### 6.2 Test Backend API
+### 6.3 Test Backend API
 Get the external hostname of the backend LoadBalancer:
 ```bash
 BACKEND_URL=$(kubectl get svc backend -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
