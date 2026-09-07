@@ -5,3 +5,6 @@ node_modules
 *.tfstate.backup
 credentials
 .pytest_cache
+*.exe
+*.zip
+.terraform.lock.hcl
