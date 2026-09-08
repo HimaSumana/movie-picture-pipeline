@@ -3,7 +3,7 @@ FROM  public.ecr.aws/docker/library/node:18.14.2-alpine3.17
 ARG REACT_APP_MOVIE_API_URL=http://ac1359cd0e3f44f8c91202d0c0671d17-1078869171.us-east-1.elb.amazonaws.com
 ENV REACT_APP_MOVIE_API_URL=${REACT_APP_MOVIE_API_URL}
 
-# Trigger Frontend CD (Second in sequence)
+# Trigger Frontend CD (Second in sequence) - updated auth
 WORKDIR /app
 
 # Copy dependdency files
