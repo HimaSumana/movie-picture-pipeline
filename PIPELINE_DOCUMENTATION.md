@@ -189,3 +189,29 @@ To avoid unnecessary AWS charges after project submission or testing:
 cd setup/terraform
 terraform destroy -auto-approve
 ```
+
+---
+
+## 8. Workflow Verification Runs & Proofs
+
+Per reviewer specifications, all workflows have been updated, executed, and verified:
+
+### 8.1 Successful Workflow Runs
+- **Frontend Continuous Integration**: [Run #34210586062](https://github.com/HimaSumana/movie-picture-pipeline/actions/runs/34210586062) — Verified with `Run the npm run test command` included in the `build` job after dependencies installation.
+- **Backend Continuous Integration**: [Run #34124782092](https://github.com/HimaSumana/movie-picture-pipeline/actions/runs/34124782092) — Verified all Lint, Test, and Build jobs green.
+- **Backend Continuous Deployment (1st in sequence)**: [Run #34209924210](https://github.com/HimaSumana/movie-picture-pipeline/actions/runs/34209924210) — Includes automated verification step `Verify Kubernetes deployment and service` showing nodes, pods, and backend service status.
+- **Frontend Continuous Deployment (2nd in sequence)**: [Run #34210180984](https://github.com/HimaSumana/movie-picture-pipeline/actions/runs/34210180984) — Includes automated verification step `Verify Kubernetes deployment and service` confirming running pods and LoadBalancer hostname.
+
+### 8.2 Live Working URLs
+- **Deployed Frontend Application**: [http://acf3cea40adc242018c19ff7c30c8adc-829894773.us-east-1.elb.amazonaws.com](http://acf3cea40adc242018c19ff7c30c8adc-829894773.us-east-1.elb.amazonaws.com)
+- **Deployed Backend Movie API**: [http://ac1359cd0e3f44f8c91202d0c0671d17-1078869171.us-east-1.elb.amazonaws.com/movies](http://ac1359cd0e3f44f8c91202d0c0671d17-1078869171.us-east-1.elb.amazonaws.com/movies)
+
+### 8.3 Submission Screenshots
+All screenshots are placed in `screenshots/` and zipped as `screenshots.zip`:
+1. `01_Frontend_CI_Success.png` — Successful run with `npm run test` in build job.
+2. `02_Backend_CI_Success.png` — Successful backend CI run.
+3. `03_Frontend_CD_Success.png` — Successful frontend CD deployment with verification step.
+4. `04_Backend_CD_Success.png` — Successful backend CD deployment with verification step.
+5. `05_GitHub_Actions_All_Runs.png` — GitHub Actions dashboard showing all runs green in correct sequence.
+6. `06_Deployed_Frontend_Application.png` — Full browser window showing movie list and active URL in the address bar.
+7. `07_Deployed_Backend_API_Movies.png` — Full browser window showing `/movies` JSON response and active URL in the address bar.
