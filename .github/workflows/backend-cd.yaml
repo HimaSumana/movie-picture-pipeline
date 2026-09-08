@@ -139,7 +139,11 @@ jobs:
           cd starter/backend/k8s
           kustomize edit set image backend=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           kustomize build | kubectl apply -f -
-          kubectl rollout status deployment/backend --timeout=180s
+          echo "=== Current Nodes ==="
+          kubectl get nodes -o wide || true
+          echo "=== Current Pods ==="
+          kubectl get pods -o wide || true
+          kubectl rollout status deployment/backend --timeout=300s || (kubectl describe pods -l app=backend && exit 1)
 
       - name: Verify Kubernetes deployment and service
         run: |

@@ -137,7 +137,11 @@ jobs:
           cd starter/frontend/k8s
           kustomize edit set image frontend=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           kustomize build | kubectl apply -f -
-          kubectl rollout status deployment/frontend --timeout=180s
+          echo "=== Current Nodes ==="
+          kubectl get nodes -o wide || true
+          echo "=== Current Pods ==="
+          kubectl get pods -o wide || true
+          kubectl rollout status deployment/frontend --timeout=300s || (kubectl describe pods -l app=frontend && exit 1)
 
       - name: Verify Kubernetes deployment and service
         run: |
