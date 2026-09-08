@@ -138,3 +138,11 @@ jobs:
           kustomize edit set image frontend=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           kustomize build | kubectl apply -f -
           kubectl rollout status deployment/frontend --timeout=180s
+
+      - name: Verify Kubernetes deployment and service
+        run: |
+          kubectl get nodes -o wide
+          kubectl get pods -o wide
+          kubectl get services -o wide
+          echo "Frontend Service Details:"
+          kubectl get svc frontend
